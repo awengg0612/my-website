@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #b0e0e6;
+            font-size: 50px;
+        }
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* 使整體內容置中 */
+            justify-content: center;
+            flex-grow: 1;
+            gap: 20px;
+        }
+        
+        .time {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 30px;
+        }
+        
+        h1 {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+        
+        p {
+            font-size: 30px;
+            text-align: left; /* 文字靠左對齊 */
+            max-width: 800px;
+        }
+        
+        .home-button {
+            font-size: 30px;
+            padding: 10px 30px;
+            cursor: pointer;
+        }
+
+        .copyright {
+            position: absolute;
+            bottom: 10px;
+            right: 30px;
+            font-size: 20px;  /* 你可以根據需要調整這裡的字體大小 */
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="time">{{ currentTime }}</div>
+        <div class="container">
+            <h1>CNN介紹</h1>
+            <p>卷積神經網路（Convolutional Neural Network, CNN）是一種專門用於處理具有固定大小的圖像輸入的深度學習模型。透過卷積層、池化層和全連接層的組合，CNN能夠識別和分類圖像中的特徵。</p>
+            <button class="home-button" @click="goHome">返回首頁</button>
+        </div>
+    </div>
+    <div class="copyright">
+        &copy; by NCCU Library
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                currentTime: new Date().toLocaleString(),
+            },
+            methods: {
+                goHome() {
+                    window.location.href = 'login.html';
+                }
+            },
+            mounted() {
+                setInterval(() => {
+                    this.currentTime = new Date().toLocaleString();
+                }, 1000);
+            }
+        });
+    </script>
+</body>
+
+</html>

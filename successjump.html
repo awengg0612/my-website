@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登入成功</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-size: 24px;
+            background-color: #e6f7ff;
+            /* 淺藍色背景 */
+        }
+    </style>
+</head>
+
+<body>
+    <div id="timeDisplay" style="position: absolute; top: 10px; right: 10px; font-size: 30px;"></div>
+    登入成功！
+    <div class="copyright" style="position: absolute; bottom: 10px; right: 30px; font-size: 20px;">
+        &copy; by NCCU Library
+    </div>
+    <script>
+        function updateTime() {
+            document.getElementById('timeDisplay').innerText = new Date().toLocaleString();
+        }
+
+        // 立即更新時間，並每秒更新一次
+        updateTime();
+        setInterval(updateTime, 1000);
+
+        setTimeout(function() {
+            window.location.href = 'success.html'; // 這裡是你的指定頁面
+        }, 3000); // 停留3秒 (3000毫秒)
+    </script>
+</body>
+
+</html>

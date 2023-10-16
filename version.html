@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #b0e0e6;
+        }
+        
+        .chart-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 50px;
+            /* 提供間距 */
+        }
+        
+        .bar-chart {
+            display: flex;
+            align-items: flex-end;
+            gap: 50px;
+        }
+        
+        button.home-button {
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            transition: background-color 0.3s;
+        }
+        
+        button.home-button:hover {
+            background-color: #45a049;
+        }
+        
+        .bar {
+            width: 50px;
+            text-align: center;
+            font-size: 16px;
+        }
+        
+        .bar span {
+            display: block;
+        }
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .time {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 30px;
+        }
+        
+        h1 {
+            position: absolute;
+            top: 50px;
+        }
+        
+        .copyright {
+            position: absolute;
+            bottom: 10px;
+            right: 30px;
+            font-size: 20px;
+            /* 你可以根據需要調整這裡的字體大小 */
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="time">{{ currentTime }}</div>
+        <h1>長條圖顯示</h1>
+        <div class="chart-container">
+            <div class="bar-chart">
+                <div class="bar" v-bind:style="{ height: loginSuccessCount + 'px', backgroundColor: '#4CAF50' }">
+                    <span>{{ loginSuccessCount }}</span> 登入成功
+                </div>
+                <div class="bar" v-bind:style="{ height: loginFailCount + 'px', backgroundColor: '#FF5722' }">
+                    <span>{{ loginFailCount }}</span> 登入失敗
+                </div>
+            </div>
+            <button class="home-button" @click="goHome">返回選擇頁面</button>
+        </div>
+    </div>
+
+    <div class="copyright">
+        &copy; by NCCU Library
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                currentTime: new Date().toLocaleString(),
+                loginSuccessCount: parseInt(localStorage.getItem('loginSuccessCount') || 0),
+                loginFailCount: parseInt(localStorage.getItem('loginFailCount') || 0)
+            },
+            methods: {
+                goHome() {
+                    window.location.href = 'success.html'; // 修改為你的首頁URL
+                }
+            },
+            mounted() {
+                setInterval(() => {
+                    this.currentTime = new Date().toLocaleString();
+                }, 1000);
+            }
+        });
+    </script>
+</body>
+
+</html>

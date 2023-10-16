@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <style>
+        body {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #b0e0e6;
+            font-size: 50px;
+        }
+        
+        .container {
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+            align-items: center;
+            justify-items: center;
+            flex-grow: 1;
+            grid-gap: 20px;
+        }
+        
+        .time {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 30px;
+        }
+        
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            width: 500px;
+            gap: 20px;
+        }
+        
+        .container button {
+            padding: 15px;
+            font-size: 30px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            justify-self: center;
+        }
+        
+        .image-display {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .image-display img {
+            max-width: 100%;
+            max-height: 300px;
+        }
+        
+        .copyright {
+            position: absolute;
+            bottom: 10px;
+            right: 30px;
+            font-size: 20px;
+        }
+        
+        .return-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .return-btn:hover {
+            background-color: #45a049;
+        }
+        
+        .return-btn-container {
+            display: flex;
+            flex-direction: column;
+            /* 讓按鈕垂直堆疊 */
+            align-items: center;
+            /* 按鈕水平居中 */
+            gap: 10px;
+            /* 用於提供按鈕之間的空間 (若瀏覽器支援) */
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="time">{{ currentTime }}</div>
+        <h1>辨識結果: <span id="result"></span></h1>
+        <div class="return-btn-container">
+            <a href="success.html" class="return-btn">返回選擇頁面</a>
+            <a href="success.html" class="return-btn">返回辨識窗口</a>
+        </div>
+        <div class="copyright">
+            &copy; by NCCU Library
+        </div>
+
+        <script>
+            new Vue({
+                el: '#app',
+                data: {
+                    currentTime: new Date().toLocaleString(),
+                    selectedImage: null,
+                    selectedImageURL: null
+                },
+
+                mounted() {
+                    setInterval(() => {
+                        this.currentTime = new Date().toLocaleString();
+                    }, 1000);
+                }
+            });
+            const urlParams = new URLSearchParams(window.location.search);
+            const result = urlParams.get('result');
+            document.getElementById('result').textContent = result;
+        </script>
+</body>
+
+</html>

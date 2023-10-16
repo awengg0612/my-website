@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #b0e0e6;
+            /* 更改為淺藍色 */
+            font-size: 24px;
+        }
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .menu {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .menu button {
+            padding: 10px 20px;
+            font-size: 20px;
+        }
+        
+        .time {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 30px;
+        }
+        
+        .copyright {
+            position: absolute;
+            bottom: 10px;
+            right: 30px;
+            font-size: 20px;
+            /* 你可以根據需要調整這裡的字體大小 */
+        }
+        
+        .welcome-message {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="welcome-message" id="welcome">歡迎</div>
+    <div class="container">
+        <div class="time" id="time"></div>
+        <p>請點選下方前往</p>
+        <div class="menu">
+            <button onclick="returnToversion()">視覺化效果</button>
+            <button onclick="returnTopicture()">辨識窗口</button>
+        </div>
+    </div>
+
+    <div class="copyright">
+        &copy; by NCCU Library
+    </div>
+
+    <script>
+        function updateTime() {
+            const currentTime = new Date().toLocaleString();
+            document.getElementById('time').textContent = currentTime;
+        }
+
+        function returnToversion() {
+            window.location.href = 'version.html';
+        }
+
+        function returnTopicture() {
+            window.location.href = 'picture.html';
+        }
+
+        const loggedInUsername = localStorage.getItem('loggedInUsername');
+        if (loggedInUsername) {
+            const welcomeElement = document.getElementById('welcome');
+            if (welcomeElement) {
+                welcomeElement.textContent = '歡迎 ' + loggedInUsername + '!';
+            }
+        }
+
+        setWelcomeMessage();
+
+        updateTime();
+        setInterval(updateTime, 1000);
+    </script>
+</body>
+
+</html>
